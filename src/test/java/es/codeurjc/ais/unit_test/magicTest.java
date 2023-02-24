@@ -9,11 +9,11 @@ public class magicTest {
 
     @Test
     public class magicTest(){
-
+        List<Book>
         //Given
         BookService book=mock(BookService.class);
         //When
-        when(book.findAll("Magic"))
+        when(book.findAll("Magic")).thenReturn();
         //Then
     }
 }
