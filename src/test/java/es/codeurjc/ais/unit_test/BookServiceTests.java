@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.mockito.Mockito.mock;
 
-public class magicTest {
+public class BookServiceTests {
 
     @Test
     public class magicTest(){
