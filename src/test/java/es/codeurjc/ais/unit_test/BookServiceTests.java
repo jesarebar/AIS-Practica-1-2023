@@ -21,18 +21,18 @@ public class BookServiceTests {
     public void magicTest(){
         //Given
         OpenLibraryService open_l=mock(OpenLibraryService.class);
-        NotificationService nser=mock(NotificationService.class);
+        NotificationService n_ser=mock(NotificationService.class);
 
         //When
         List<BookData> libros=new ArrayList<>();
         Integer[] auxint={1,2,3};
         String[] auxStr={"a","b","c"};
-        BookData bk1=new BookData("magia1","clave1","Libro de magia",auxint,auxStr);
-        BookData bk2=new BookData("magia2","clave2","Libro de magi2",auxint,auxStr);
+        BookData bk1=new BookData("magia1","clave1/sfg/hg","Libro de magia",auxint,auxStr);
+        BookData bk2=new BookData("magia2","clave2/fbh/fsg","Libro de magi2",auxint,auxStr);
         libros.add(bk1);
         libros.add(bk2);
 
-        BookService book=new BookService(open_l,nser);
+        BookService book=new BookService(open_l,n_ser);
         when(open_l.searchBooks(anyString(),anyInt())).thenReturn(libros);
         //Then
        assertTrue(book.findAll("magic").size()==2);
