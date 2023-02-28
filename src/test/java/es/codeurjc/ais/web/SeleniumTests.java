@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 
@@ -16,10 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
-import java.time.Duration;
 
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class dramaTest {
+public class SeleniumTests {
 
     @LocalServerPort
     int port;
@@ -28,12 +27,12 @@ public class dramaTest {
 
     @BeforeAll
     public static void setupClass() {
-        WebDriverManager.edgedriver().setup();
+        WebDriverManager.chromedriver().setup();
     }
 
     @BeforeEach
     public void setup() {
-        driver = new EdgeDriver();
+        driver = new ChromeDriver();
     }
 
     @AfterEach
@@ -44,34 +43,28 @@ public class dramaTest {
     }
 
     @Test
-    public void test() throws InterruptedException {
+    public void test1() throws InterruptedException {
         driver.get("http://localhost:"+this.port+"/");
-
         String s1 = "drama";
-
         WebElement searchInput = driver.findElement(By.name("topic"));
-
-        //Thread.sleep(5000);
-
         searchInput.sendKeys(s1);
-
-        //Thread.sleep(5000);
-
         searchInput.submit();
-
         WebElement book = driver.findElement(By.id("Pride and Prejudice"));
-
-        //Thread.sleep(5000);
-
         book.click();
-
-        //Thread.sleep(5000);
-
         WebElement tag = driver.findElement(By.id(s1));
-
         String s2 = tag.getText();
-
         assertEquals(s1, s2);
     }
 
+    @Test
+    public void test2() throws InterruptedException {
+        driver.get("http://localhost:"+this.port+"/");
+
+    }
+
+    @Test
+    public void test3() throws InterruptedException {
+        driver.get("http://localhost:"+this.port+"/");
+
+    }
 }
