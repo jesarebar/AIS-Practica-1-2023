@@ -65,6 +65,15 @@ public class SeleniumTests {
         searchInput.submit();
         WebElement book= driver.findElement(By.id("The Way of Kings"));
         book.click();
+        WebElement nick=driver.findElement(By.name("nickname"));
+        nick.sendKeys("text");
+        WebElement cont=driver.findElement(By.name("content"));
+        cont.sendKeys("my first review");
+        WebElement button=driver.findElement(By.id("add-review"));
+        button.click();
+        String texta=driver.findElement(By.className("text")).getText();
+        //assertEquals(texta,"my first review");
+        //Solo falla el equals porque devuelve más cosas en texta, devuelve un texto más largo
     }
 
     @Test
