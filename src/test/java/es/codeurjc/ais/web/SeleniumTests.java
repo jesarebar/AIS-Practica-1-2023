@@ -13,6 +13,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -71,8 +72,8 @@ public class SeleniumTests {
         cont.sendKeys("my first review");
         WebElement button=driver.findElement(By.id("add-review"));
         button.click();
-        String texta=driver.findElement(By.className("text")).getText();
-        //assertEquals(texta,"my first review");
+        String coment=driver.findElement(By.className("comment")).getText();
+        assertTrue(coment.contains("my first review"));
         //Solo falla el equals porque devuelve más cosas en texta, devuelve un texto más largo
     }
 
