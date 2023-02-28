@@ -59,7 +59,12 @@ public class SeleniumTests {
     @Test
     public void test2() throws InterruptedException {
         driver.get("http://localhost:"+this.port+"/");
-
+        String s = "epic fantasy";
+        WebElement searchInput = driver.findElement(By.name("topic"));
+        searchInput.sendKeys(s);
+        searchInput.submit();
+        WebElement book= driver.findElement(By.id("The Way of Kings"));
+        book.click();
     }
 
     @Test
