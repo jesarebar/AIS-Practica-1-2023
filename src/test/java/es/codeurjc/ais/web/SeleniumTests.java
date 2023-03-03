@@ -13,6 +13,7 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -59,7 +60,20 @@ public class SeleniumTests {
     @Test
     public void test2() throws InterruptedException {
         driver.get("http://localhost:"+this.port+"/");
-
+        WebElement searchInput = driver.findElement(By.name("topic"));
+        searchInput.sendKeys("epic fantasy");
+        searchInput.submit();
+        WebElement book= driver.findElement(By.id("The Way of Kings"));
+        book.click();
+        WebElement nick=driver.findElement(By.name("nickname"));
+        nick.sendKeys("text");
+        WebElement cont=driver.findElement(By.name("content"));
+        cont.sendKeys("my first review");
+        WebElement button=driver.findElement(By.id("add-review"));
+        button.click();
+        String coment=driver.findElement(By.className("comment")).getText();
+        assertTrue(coment.contains("my first review"));
+        //Solo falla el equals porque devuelve más cosas en texta, devuelve un texto más largo
     }
 
     @Test
