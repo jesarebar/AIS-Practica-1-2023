@@ -88,6 +88,7 @@ public class SeleniumTests {
         submitReview.submit();
         WebElement error = driver.findElement(By.id("error-message"));
         String message = error.getText();
-        assertTrue(message.contains("Error"));
+        System.out.println(message);
+        assertTrue(message.contains("Error at saving the review: empty fields"));
     }
 }
