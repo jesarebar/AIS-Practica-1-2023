@@ -79,6 +79,15 @@ public class SeleniumTests {
     @Test
     public void test3() throws InterruptedException {
         driver.get("http://localhost:"+this.port+"/");
-
+        WebElement searchInput = driver.findElement(By.name("topic"));
+        searchInput.sendKeys("epic fantasy");
+        searchInput.submit();
+        WebElement book= driver.findElement(By.id("Words of Radiance"));
+        book.click();
+        WebElement submitReview = driver.findElement(By.id("add-review"));
+        submitReview.submit();
+        WebElement error = driver.findElement(By.id("error-message"));
+        String message = error.getText();
+        assertTrue(message.contains("Error"));
     }
 }

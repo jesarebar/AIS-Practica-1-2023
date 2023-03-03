@@ -12,8 +12,8 @@ public class RESTAssuredTests {
     public void test1(){
         JSONObject body= new JSONObject();
 
-        body.put("")
-        given().
+        //body.put("")
+        //given().
 
     }
 }
