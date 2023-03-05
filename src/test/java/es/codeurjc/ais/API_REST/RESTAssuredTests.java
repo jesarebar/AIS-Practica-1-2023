@@ -3,11 +3,9 @@ package es.codeurjc.ais.API_REST;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.bouncycastle.tsp.TSPUtil;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.json.Json;
 
 import java.util.ArrayList;
 
