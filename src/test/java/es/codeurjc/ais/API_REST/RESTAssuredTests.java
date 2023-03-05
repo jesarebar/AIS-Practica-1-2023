@@ -9,11 +9,9 @@ import static org.hamcrest.Matchers.*;
 
 public class RESTAssuredTests {
     @Test
-    public void test1(){
-        JSONObject body= new JSONObject();
-
-        //body.put("")
-        //given().
-
+    public void test1() {
+        given().param("topic", "drama").
+                when().get("http://localhost:8080/api/books/").
+                then().statusCode(200).body("size()", equalTo(10));
     }
 }
