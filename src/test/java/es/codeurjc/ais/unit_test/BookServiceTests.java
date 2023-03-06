@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -37,6 +38,21 @@ public class BookServiceTests {
 
         //Then
         assertTrue(book.findAll("magic").size() == 2);
+
+    }
+
+    @Test
+    public void test2(){
+        //Given
+        OpenLibraryService open_l = mock(OpenLibraryService.class);
+        NotificationService n_ser = mock(NotificationService.class);
+
+
+        //When
+
+        BookService book = new BookService(open_l, n_ser);
+
+        when(book.findById("fake_id")).thenReturn(Optional.empty());
 
     }
 }
