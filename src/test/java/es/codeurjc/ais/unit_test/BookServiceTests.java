@@ -18,7 +18,7 @@ import static org.mockito.Mockito.when;
 public class BookServiceTests {
 
    @Test
-    public void magicTest(){
+    public void test1(){
         //Given
         OpenLibraryService open_l=mock(OpenLibraryService.class);
         NotificationService n_ser=mock(NotificationService.class);
@@ -34,6 +34,7 @@ public class BookServiceTests {
 
         BookService book=new BookService(open_l,n_ser);
         when(open_l.searchBooks(anyString(),anyInt())).thenReturn(libros);
+
         //Then
        assertTrue(book.findAll("magic").size()==2);
 
