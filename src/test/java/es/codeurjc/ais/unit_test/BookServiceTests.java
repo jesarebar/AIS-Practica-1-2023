@@ -17,26 +17,26 @@ import static org.mockito.Mockito.when;
 
 public class BookServiceTests {
 
-   @Test
-    public void test1(){
+    @Test
+    public void test1() {
         //Given
-        OpenLibraryService open_l=mock(OpenLibraryService.class);
-        NotificationService n_ser=mock(NotificationService.class);
+        OpenLibraryService open_l = mock(OpenLibraryService.class);
+        NotificationService n_ser = mock(NotificationService.class);
 
         //When
-        List<BookData> libros=new ArrayList<>();
-        Integer[] auxint={1,2,3};
-        String[] auxStr={"a","b","c"};
-        BookData bk1=new BookData("magia1","clave1/sfg/hg","Libro de magia",auxint,auxStr);
-        BookData bk2=new BookData("magia2","clave2/fbh/fsg","Libro de magi2",auxint,auxStr);
-        libros.add(bk1);
-        libros.add(bk2);
+        List<BookData> books = new ArrayList<>();
+        Integer[] auxint = {1, 2, 3};
+        String[] auxStr = {"a", "b", "c"};
+        BookData bk1 = new BookData("magic1", "key1/sfg/hg", "Magic Book", auxint, auxStr);
+        BookData bk2 = new BookData("magic2", "key2/fbh/fsg", "Magic 2ook", auxint, auxStr);
+        books.add(bk1);
+        books.add(bk2);
 
-        BookService book=new BookService(open_l,n_ser);
-        when(open_l.searchBooks(anyString(),anyInt())).thenReturn(libros);
+        BookService book = new BookService(open_l, n_ser);
+        when(open_l.searchBooks(anyString(), anyInt())).thenReturn(books);
 
         //Then
-       assertTrue(book.findAll("magic").size()==2);
+        assertTrue(book.findAll("magic").size() == 2);
 
     }
 }

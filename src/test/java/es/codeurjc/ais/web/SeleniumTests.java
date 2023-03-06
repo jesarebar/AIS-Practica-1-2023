@@ -1,4 +1,5 @@
 package es.codeurjc.ais.web;
+
 import es.codeurjc.ais.Application;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -38,14 +39,14 @@ public class SeleniumTests {
 
     @AfterEach
     public void teardown() {
-        if(driver != null) {
+        if (driver != null) {
             driver.quit();
         }
     }
 
     @Test
     public void test1() throws InterruptedException {
-        driver.get("http://localhost:"+this.port+"/");
+        driver.get("http://localhost:" + this.port + "/");
         String s1 = "drama";
         WebElement searchInput = driver.findElement(By.name("topic"));
         searchInput.sendKeys(s1);
@@ -61,30 +62,30 @@ public class SeleniumTests {
 
     @Test
     public void test2() throws InterruptedException {
-        driver.get("http://localhost:"+this.port+"/");
+        driver.get("http://localhost:" + this.port + "/");
         WebElement searchInput = driver.findElement(By.name("topic"));
         searchInput.sendKeys("epic fantasy");
         searchInput.submit();
-        WebElement book= driver.findElement(By.id("The Way of Kings"));
+        WebElement book = driver.findElement(By.id("The Way of Kings"));
         book.click();
-        WebElement nick=driver.findElement(By.name("nickname"));
+        WebElement nick = driver.findElement(By.name("nickname"));
         nick.sendKeys("text");
-        WebElement cont=driver.findElement(By.name("content"));
+        WebElement cont = driver.findElement(By.name("content"));
         cont.sendKeys("my first review");
-        WebElement button=driver.findElement(By.id("add-review"));
+        WebElement button = driver.findElement(By.id("add-review"));
         button.click();
-        String coment=driver.findElement(By.className("comment")).getText();
+        String coment = driver.findElement(By.className("comment")).getText();
         assertTrue(coment.contains("my first review"));
         //Solo falla el equals porque devuelve más cosas en texta, devuelve un texto más largo
     }
 
     @Test
     public void test3() throws InterruptedException {
-        driver.get("http://localhost:"+this.port+"/");
+        driver.get("http://localhost:" + this.port + "/");
         WebElement searchInput = driver.findElement(By.name("topic"));
         searchInput.sendKeys("epic fantasy");
         searchInput.submit();
-        WebElement book= driver.findElement(By.id("Words of Radiance"));
+        WebElement book = driver.findElement(By.id("Words of Radiance"));
         book.click();
         WebElement submitReview = driver.findElement(By.id("add-review"));
         submitReview.submit();

@@ -17,16 +17,17 @@ import static org.hamcrest.Matchers.*;
 public class RESTAssuredTests {
     @Test
     public void test1() {
-        given().param("topic", "drama").
-                when().get("http://localhost:8080/api/books/").
-                then().statusCode(200).body("size()", equalTo(10));
+        given().param("topic", "drama")
+                .when().get("http://localhost:8080/api/books/")
+                .then().statusCode(200).body("size()", equalTo(10));
     }
 
     @Test
     public void test2() throws JSONException {
 
         Response fantasyResponse = given().param("topic", "fantasy")
-                .when().get("http://localhost:8080/api/books/").then().extract().response();
+                .when().get("http://localhost:8080/api/books/")
+                .then().extract().response();
 
         JsonPath json_fantasyResponse = from(fantasyResponse.getBody().asString());
 
@@ -41,12 +42,12 @@ public class RESTAssuredTests {
         review.put("content", "I liked it");
         review.put("bookId", firstBookid);
 
-        given().request().body(review.toString()).contentType(ContentType.JSON).
-                when().post("http://localhost:8080/api/books/"+firstBookid+"/review").
-                then().assertThat().statusCode(201);
+        given().request().body(review.toString()).contentType(ContentType.JSON)
+                .when().post("http://localhost:8080/api/books/" + firstBookid + "/review")
+                .then().assertThat().statusCode(201);
 
-        given().get("http://localhost:8080/api/books/"+firstBookid).
-                then().assertThat().body("reviews", notNullValue());
+        given().get("http://localhost:8080/api/books/" + firstBookid)
+                .then().assertThat().body("reviews", notNullValue());
 
     }
 }
