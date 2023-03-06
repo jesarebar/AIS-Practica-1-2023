@@ -19,7 +19,7 @@ public class RESTAssuredTests {
     public void test1() {
         given().param("topic", "drama")
                 .when().get("http://localhost:8080/api/books/")
-                .then().statusCode(200).body("size()", equalTo(10));
+                .then().assertThat().statusCode(200).assertThat().body("size()", equalTo(10));
     }
 
     @Test

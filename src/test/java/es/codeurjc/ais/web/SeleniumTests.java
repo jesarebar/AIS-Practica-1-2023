@@ -76,7 +76,6 @@ public class SeleniumTests {
         button.click();
         String coment = driver.findElement(By.className("comment")).getText();
         assertTrue(coment.contains("my first review"));
-        //Solo falla el equals porque devuelve más cosas en texta, devuelve un texto más largo
     }
 
     @Test
@@ -91,7 +90,6 @@ public class SeleniumTests {
         submitReview.submit();
         WebElement error = driver.findElement(By.id("error-message"));
         String message = error.getText();
-        System.out.println(message);
-        assertTrue(message.contains("Error at saving the review: empty fields"));
+        assertEquals("Error at saving the review: empty fields", message);
     }
 }
