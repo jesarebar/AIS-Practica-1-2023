@@ -23,4 +23,9 @@ public class OpenLibraryServiceTests {
             assertEquals(search.size(), n);
         }
     }
+
+    @Test
+    public void test2() {
+
+    }
 }
