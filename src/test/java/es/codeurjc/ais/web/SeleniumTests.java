@@ -50,7 +50,9 @@ public class SeleniumTests {
         WebElement searchInput = driver.findElement(By.name("topic"));
         searchInput.sendKeys(s1);
         searchInput.submit();
-        WebElement book = driver.findElement(By.id("Pride and Prejudice"));
+        WebElement topic = driver.findElement(By.xpath("/html/body/div[2]/h1"));
+        assertEquals("Books (topic=drama)", topic.getText());
+        WebElement book = driver.findElement(By.xpath("/html/body/div[2]/div/a[1]"));
         book.click();
         WebElement tag = driver.findElement(By.id(s1));
         String s2 = tag.getText();
