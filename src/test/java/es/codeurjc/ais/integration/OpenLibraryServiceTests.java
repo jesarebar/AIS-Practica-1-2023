@@ -30,9 +30,9 @@ public class OpenLibraryServiceTests {
     @Test
     public void test2() {
         OpenLibraryService service = new OpenLibraryService();
-        BookData book = service.getBook("OL8479867W");
-        assertDoesNotThrow(() -> service.getBook("OL8479867W")); //Esta linea no creo que sirva
-        assertEquals("The Name of the Wind",book.title);
-
+        assertDoesNotThrow(() -> {
+            BookData book = service.getBook("OL8479867W");
+            assertEquals("The Name of the Wind", book.title);
+        });
     }
 }

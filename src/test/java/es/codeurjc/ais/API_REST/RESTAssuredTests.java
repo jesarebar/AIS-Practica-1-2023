@@ -53,25 +53,26 @@ public class RESTAssuredTests {
                 .then().assertThat().body("reviews", notNullValue());
 
     }
+
     @Test
     public void test3() throws JSONException {
-        String id="OL15358691W";
+        String id = "OL15358691W";
 
-       JSONObject review = new JSONObject();
+        JSONObject review = new JSONObject();
 
         review.put("nickname", "Peter");
         review.put("content", "I unliked it");
         review.put("bookId", id);
 
-        Response rev=given().request().body(review.toString()).contentType(ContentType.JSON)
+        Response rev = given().request().body(review.toString()).contentType(ContentType.JSON)
                 .when().post("http://localhost:8080/api/books/" + id + "/review")
                 .then().assertThat().statusCode(201)
                 .extract().response();
 
-        Long reviewID=rev.as(Review.class).getId();
+        Long reviewID = rev.as(Review.class).getId();
         given()
                 .when()
-                .delete("http://localhost:8080/api/books/"+id+"/review/"+reviewID).
+                .delete("http://localhost:8080/api/books/" + id + "/review/" + reviewID).
                 then().assertThat().statusCode(204);
 
     }
