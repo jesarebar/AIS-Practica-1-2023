@@ -35,6 +35,7 @@ public class SeleniumTests {
     @BeforeEach
     public void setup() {
         driver = new ChromeDriver();
+        driver.get("http://localhost:" + this.port + "/");
     }
 
     @AfterEach
@@ -45,10 +46,9 @@ public class SeleniumTests {
     }
 
     @Test
-    public void test1() throws InterruptedException {
-        driver.get("http://localhost:" + this.port + "/");
-        String s1 = "drama";
+    public void test1() {
         WebElement searchInput = driver.findElement(By.name("topic"));
+        String s1 = "drama";
         searchInput.sendKeys(s1);
         searchInput.submit();
         WebElement topic = driver.findElement(By.xpath("/html/body/div[2]/h1"));
@@ -61,8 +61,7 @@ public class SeleniumTests {
     }
 
     @Test
-    public void test2() throws InterruptedException {
-        driver.get("http://localhost:" + this.port + "/");
+    public void test2() {
         WebElement searchInput = driver.findElement(By.name("topic"));
         searchInput.sendKeys("epic fantasy");
         searchInput.submit();
@@ -74,13 +73,12 @@ public class SeleniumTests {
         cont.sendKeys("my first review");
         WebElement button = driver.findElement(By.id("add-review"));
         button.click();
-        String coment = driver.findElement(By.className("comment")).getText();
-        assertTrue(coment.contains("my first review"));
+        String comment = driver.findElement(By.className("comment")).getText();
+        assertTrue(comment.contains("my first review"));
     }
 
     @Test
-    public void test3() throws InterruptedException {
-        driver.get("http://localhost:" + this.port + "/");
+    public void test3() {
         WebElement searchInput = driver.findElement(By.name("topic"));
         searchInput.sendKeys("epic fantasy");
         searchInput.submit();

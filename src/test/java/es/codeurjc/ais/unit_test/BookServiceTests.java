@@ -4,7 +4,6 @@ import es.codeurjc.ais.book.BookService;
 import es.codeurjc.ais.book.OpenLibraryService.BookData;
 import es.codeurjc.ais.book.OpenLibraryService;
 import es.codeurjc.ais.notification.NotificationService;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.client.HttpClientErrorException;
@@ -12,7 +11,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import java.util.ArrayList;
 
 import java.util.List;
-import java.util.Optional;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
