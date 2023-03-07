@@ -4,7 +4,10 @@ import es.codeurjc.ais.book.BookService;
 import es.codeurjc.ais.book.OpenLibraryService.BookData;
 import es.codeurjc.ais.book.OpenLibraryService;
 import es.codeurjc.ais.notification.NotificationService;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.ArrayList;
 
@@ -18,12 +21,19 @@ import static org.mockito.Mockito.when;
 
 public class BookServiceTests {
 
+    OpenLibraryService open_l;
+    NotificationService n_ser;
+    BookService book;
+
+    @BeforeEach
+    public void setUp(){
+        //Given
+        open_l = mock(OpenLibraryService.class);
+        n_ser = mock(NotificationService.class);
+        book = new BookService(open_l, n_ser);
+    }
     @Test
     public void test1() {
-        //Given
-        OpenLibraryService open_l = mock(OpenLibraryService.class);
-        NotificationService n_ser = mock(NotificationService.class);
-
         //When
         List<BookData> books = new ArrayList<>();
         Integer[] auxint = {1, 2, 3};
@@ -33,26 +43,24 @@ public class BookServiceTests {
         books.add(bk1);
         books.add(bk2);
 
-        BookService book = new BookService(open_l, n_ser);
         when(open_l.searchBooks(anyString(), anyInt())).thenReturn(books);
 
         //Then
-        assertTrue(book.findAll("magic").size() == 2);
-
+        assertEquals(2, book.findAll("magic").size());
+        verify(n_ser).info(anyString());
+        verify(open_l).searchBooks(anyString(), anyInt());
     }
 
     @Test
     public void test2(){
-        //Given
-        OpenLibraryService open_l = mock(OpenLibraryService.class);
-        NotificationService n_ser = mock(NotificationService.class);
-
 
         //When
+        when(open_l.getBook(anyString())).thenThrow(HttpClientErrorException.class);
 
-        BookService book = new BookService(open_l, n_ser);
-
-        when(book.findById("fake_id")).thenReturn(Optional.empty());
+        //Then
+        assertTrue(book.findById("fake_id").isEmpty());
+        verify(n_ser).error(anyString());
+        verify(open_l).getBook(anyString());
 
     }
 }
